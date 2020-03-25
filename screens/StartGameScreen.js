@@ -12,6 +12,8 @@ import Card from "../components/Card";
 import Colors from "../constants/colors";
 import Input from "../components/Input";
 import NumberContainter from "../components/NumberContainer";
+import BodyFile from "../components/BodyFile";
+import TitleText from "../components/TitleText";
 
 const StartGameScreen = props => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -45,11 +47,14 @@ const StartGameScreen = props => {
   if (confirmed) {
     confirmedOutput = (
       <Card style={styles.summaryContainer}>
-        <Text>You selected</Text>
-        <NumberContainter > {selectedNumber}</NumberContainter>
-        <Button title = "START GAME" onPress = {() =>{
-         props.onStartGame(selectedNumber)
-        }}/>
+        <BodyFile>You selected</BodyFile>
+        <NumberContainter> {selectedNumber}</NumberContainter>
+        <Button
+          title="START GAME"
+          onPress={() => {
+            props.onStartGame(selectedNumber);
+          }}
+        />
       </Card>
     );
   }
@@ -60,9 +65,9 @@ const StartGameScreen = props => {
       }}
     >
       <View style={styles.screen}>
-        <Text style={styles.title}>Start a new game</Text>
+        <TitleText style = {styles.title}>Start a new game</TitleText>
         <Card style={styles.inputContainer}>
-          <Text>Select a number!</Text>
+          <BodyFile>Select a number!</BodyFile>
           <Input
             style={styles.input}
             blurOnSubmit
@@ -104,7 +109,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    marginVertical: 10
+    marginVertical: 10,
+    fontFamily: "open-sans-bold"
   },
   inputContainer: {
     width: 300,
@@ -126,7 +132,10 @@ const styles = StyleSheet.create({
   },
   summaryContainer: {
     marginTop: 20,
-    alignItems: 'center'
+    alignItems: "center"
+  },
+  text: {
+    fontFamily: "open-sans"
   }
 });
 
