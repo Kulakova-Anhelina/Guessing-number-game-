@@ -1,8 +1,8 @@
 import React from "react";
-import { View, StyleSheet, Button, Image, Text} from "react-native";
+import { View, StyleSheet, Button, Image, Text } from "react-native";
 import BodyFile from "../components/BodyFile";
 import TitleText from "../components/TitleText";
-import Colors from '../constants/colors'
+import Colors from "../constants/colors";
 
 const GameOverScreen = props => {
   return (
@@ -20,12 +20,13 @@ const GameOverScreen = props => {
           fadeDuration={1000}
         />
       </View>
-      <BodyFile>
-        Your phone needed{" "}
-        <Text style={styles.highlight}>{props.roundsNumber}</Text> to guess the
-        number {" "}
-        <Text style={styles.highlight}>{props.userNumber}</Text>
-      </BodyFile>
+      <View style={styles.resultContainer}>
+        <BodyFile style={styles.resultText}>
+          Your phone needed{" "}
+          <Text style={styles.highlight}>{props.roundsNumber}</Text> to guess
+          the number <Text style={styles.highlight}>{props.userNumber}</Text>
+        </BodyFile>
+      </View>
       <Button title="NEW GAME" onPress={props.onRestart} />
     </View>
   );
@@ -51,8 +52,17 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     marginVertical: 20
   },
-  highlight :{
-    color: Colors.primary
+  highlight: {
+    color: Colors.primary,
+    fontFamily: "open-sans-bold"
+  },
+  resultContainer: {
+    marginHorizontal: 20,
+    marginVertical: 15
+  },
+  resultText: {
+    textAlign: "center",
+    fontSize: 20
   }
 });
 

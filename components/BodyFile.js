@@ -7,7 +7,7 @@ const BodyFile = props => {
 
 const styles = StyleSheet.create({
   body: {
-    fontFamily: "open-sans-bold"
+    fontFamily: "open-sans"
   }
 });
 
