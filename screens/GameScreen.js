@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, Text, StyleSheet, Alert, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+  FlatList,
+  Dimensions
+} from "react-native";
 import NumberContainer from "../components/NumberContainer";
 import Card from "../components/Card";
 import DefaultStyles from "../constants/default-styles";
@@ -63,7 +70,10 @@ const GameScreen = props => {
     //setRounds(curRounds => curRounds + 1);
     setPastGuesses(cuPastGuesses => [nextNumber.toString(), ...cuPastGuesses]);
   };
-
+let listConrainerStyle = styles.listConrainer;
+if(Dimensions.get('window').width < 350){
+  listConrainerStyle = styles.listContainerBig
+}
   return (
     <View style={styles.screen}>
       <Text style={DefaultStyles.title}>Opponents guess: </Text>
@@ -76,12 +86,12 @@ const GameScreen = props => {
           <Ionicons name={"md-add"} size={24} color="white" />
         </MainButton>
       </Card>
-      <View style={styles.listConrainer}>
-        {/* <FlatList contentContainerStyle={styles.list}>
+      <View style={listConrainerStyle}>
+        {/* <Scrollview contentContainerStyle={styles.list}>
           {pastGuesses.map((guess, index) =>
             renderListItems(guess, pastGuesses.length - index)
           )}
-        </FlatList> */}
+        </Scrollview> */}
         {
           <FlatList
             contentContainerStyle={styles.list}
@@ -104,7 +114,8 @@ const styles = StyleSheet.create({
   butonnContianer: {
     flexDirection: "row",
     justifyContent: "space-around",
-    marginTop: 20,
+    // marginTop: 20,
+    marginTop: Dimensions.get("window").height > 600 ? 20 : 10,
     width: 400,
     maxWidth: "90%"
   },
@@ -120,7 +131,11 @@ const styles = StyleSheet.create({
   },
   listConrainer: {
     flex: 1,
-    width: '60%'
+    width: Dimensions.get("window").width > 350 ? "60%" : "80%"
+  },
+  listContainerBig: {
+    flex: 1,
+    width: "80%"
   },
   list: {
     flexGrow: 1,
